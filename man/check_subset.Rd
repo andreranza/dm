@@ -4,15 +4,9 @@
 \alias{check_subset}
 \title{Check column values for subset}
 \usage{
-check_subset(t1, c1, t2, c2)
+check_subset(x, y, ..., x_select = NULL, y_select = NULL)
 }
 \arguments{
-\item{t1}{The data frame that contains the columns \code{c1}.}
-
-\item{c1}{The columns of \code{t1} that should only contain values that are also present in columns \code{c2} of data frame \code{t2}. Multiple columns can be chosen using \code{c(col1, col2)}.}
-
-\item{t2}{The data frame that contains the columns \code{c2}.}
-
 \item{c2}{The columns of the second data frame which have to contain all values of \code{c1} to avoid an error. Multiple columns can be chosen using \code{c(col1, col2)}.}
 }
 \value{
@@ -20,6 +14,8 @@ Returns \code{t1}, invisibly, if the check is passed.
 Otherwise an error is thrown and the reason for it is explained.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#questioning}{\figure{lifecycle-questioning.svg}{options: alt='[Questioning]'}}}{\strong{[Questioning]}}
+
 \code{check_subset()} tests if the values of the chosen columns \code{c1} of data frame \code{t1} are a subset of the values
 of columns \code{c2} of data frame \code{t2}.
 }

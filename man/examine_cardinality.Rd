@@ -8,15 +8,15 @@
 \alias{check_cardinality_0_1}
 \title{Check table relations}
 \usage{
-check_cardinality_0_n(parent_table, pk_column, child_table, fk_column)
+check_cardinality_0_n(x, y, ..., x_select = NULL, y_select = NULL)
 
-check_cardinality_1_n(parent_table, pk_column, child_table, fk_column)
+check_cardinality_1_n(x, y, ..., x_select = NULL, y_select = NULL)
 
-check_cardinality_1_1(parent_table, pk_column, child_table, fk_column)
+check_cardinality_1_1(x, y, ..., x_select = NULL, y_select = NULL)
 
-check_cardinality_0_1(parent_table, pk_column, child_table, fk_column)
+check_cardinality_0_1(x, y, ..., x_select = NULL, y_select = NULL)
 
-examine_cardinality(parent_table, pk_column, child_table, fk_column)
+examine_cardinality(x, y, ..., x_select = NULL, y_select = NULL)
 }
 \arguments{
 \item{parent_table}{Data frame.}
@@ -34,6 +34,8 @@ Otherwise an error is thrown and the reason for it is explained.
 For \code{examine_cardinality()}: Returns a character variable specifying the type of relationship between the two columns.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#questioning}{\figure{lifecycle-questioning.svg}{options: alt='[Questioning]'}}}{\strong{[Questioning]}}
+
 All \verb{check_cardinality_*()} functions test the following conditions:
 \enumerate{
 \item Is \code{pk_column} a unique key for \code{parent_table}?
@@ -86,6 +88,13 @@ between the two given sets of columns. If either \code{pk_column} is not a uniqu
 not a subset of the values in \code{pk_column}, the requirements for a cardinality test is not fulfilled. No error will be thrown, but
 the result will contain the information which prerequisite was violated.
 }
+\section{Life cycle}{
+
+
+The interface would become much simpler without the \code{pk_column} and
+\code{fk_column} arguments, but this affects the usefulness of the return value.
+}
+
 \examples{
 d1 <- tibble::tibble(a = 1:5)
 d2 <- tibble::tibble(c = c(1:5, 5))

@@ -4,11 +4,9 @@
 \alias{check_key}
 \title{Check if column(s) can be used as keys}
 \usage{
-check_key(.data, ...)
+check_key(x, ..., .data = NULL)
 }
 \arguments{
-\item{.data}{The data frame whose columns should be tested for key properties.}
-
 \item{...}{The names of the columns to be checked.
 
 One or more unquoted expressions separated by commas.
@@ -22,17 +20,28 @@ unquoting and splicing.
 
 See selection helpers for more details and examples about tidyselect helpers
 such as \code{starts_with()}, \code{everything()}, etc.}
+
+\item{.data}{The data frame whose columns should be tested for key properties.}
 }
 \value{
 Returns \code{.data}, invisibly, if the check is passed.
 Otherwise an error is thrown and the reason for it is explained.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#questioning}{\figure{lifecycle-questioning.svg}{options: alt='[Questioning]'}}}{\strong{[Questioning]}}
+
 \code{check_key()} accepts a data frame and, optionally, columns.
 It throws an error
 if the specified columns are NOT a unique key of the data frame.
 If the columns given in the ellipsis ARE a key, the data frame itself is returned silently, so that it can be used for piping.
 }
+\section{Life cycle}{
+
+
+The interface would become much simpler without the \code{...}, but this affects
+the usefulness of the return value.
+}
+
 \examples{
 data <- tibble::tibble(a = c(1, 2, 1), b = c(1, 4, 1), c = c(5, 6, 7))
 # this is failing:
